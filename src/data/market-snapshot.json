@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026/05/02 07:13:47",
+  "updatedAt": "2026/05/03 07:08:35",
   "index": {
     "symbol": "QQQ",
     "name": "纳斯达克100（QQQ代理）",
-    "price": 674.15997,
-    "change": 6.41998,
-    "changesPercentage": 0.96144952
+    "price": 674.15002,
+    "change": 6.41003,
+    "changesPercentage": 0.95995961
   },
   "stocks": [
     {
@@ -47,9 +47,9 @@
     {
       "symbol": "META",
       "name": "Meta Platforms Inc Class A",
-      "price": 608.745,
-      "change": -3.16498,
-      "changesPercentage": -0.51722936,
+      "price": 608.75,
+      "change": -3.15997,
+      "changesPercentage": -0.51641145,
       "weight": 4.83,
       "contribution": -0.02
     },
