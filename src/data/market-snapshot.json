@@ -1,147 +1,147 @@
 {
-  "updatedAt": "2026/05/11 07:13:57",
+  "updatedAt": "2026/05/12 07:29:31",
   "index": {
     "symbol": "QQQ",
     "name": "纳斯达克100（QQQ代理）",
-    "price": 711.22998,
-    "change": 16.28998,
-    "changesPercentage": 2.34408
+    "price": 713.28998,
+    "change": 2.059998,
+    "changesPercentage": 0.28963874
   },
   "stocks": [
     {
       "symbol": "AAPL",
       "name": "Apple Inc.",
-      "price": 293.32001,
-      "change": 5.88,
-      "changesPercentage": 2.045646,
+      "price": 292.67999,
+      "change": -0.64001465,
+      "changesPercentage": -0.21819672,
       "weight": 8.72,
-      "contribution": 0.18
+      "contribution": -0.02
     },
     {
       "symbol": "MSFT",
       "name": "Microsoft Corp.",
-      "price": 415.12,
-      "change": -5.64999,
-      "changesPercentage": -1.34277,
+      "price": 412.66,
+      "change": -2.45999,
+      "changesPercentage": -0.59259768,
       "weight": 8.11,
-      "contribution": -0.11
+      "contribution": -0.05
     },
     {
       "symbol": "NVDA",
       "name": "NVIDIA Corporation",
-      "price": 215.2,
-      "change": 3.7,
-      "changesPercentage": 1.74941,
+      "price": 219.44,
+      "change": 4.24001,
+      "changesPercentage": 1.97026,
       "weight": 7.95,
-      "contribution": 0.14
+      "contribution": 0.16
     },
     {
       "symbol": "AMZN",
       "name": "Amazon.com, Inc.",
-      "price": 272.67999,
-      "change": 1.50998,
-      "changesPercentage": 0.55683858,
+      "price": 268.98999,
+      "change": -3.69,
+      "changesPercentage": -1.35324,
       "weight": 5.24,
-      "contribution": 0.03
+      "contribution": -0.07
     },
     {
       "symbol": "META",
       "name": "Meta Platforms Inc Class A",
-      "price": 609.63,
-      "change": -7.17999,
-      "changesPercentage": -1.16405,
+      "price": 598.85999,
+      "change": -10.77002,
+      "changesPercentage": -1.76665,
       "weight": 4.83,
-      "contribution": -0.06
+      "contribution": -0.09
     },
     {
       "symbol": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": 400.79999,
-      "change": 2.81,
-      "changesPercentage": 0.70604729,
+      "price": 388.64001,
+      "change": -12.15997,
+      "changesPercentage": -3.033926,
       "weight": 3.92,
-      "contribution": 0.03
+      "contribution": -0.12
     },
     {
       "symbol": "AVGO",
       "name": "Broadcom Inc.",
-      "price": 430,
-      "change": 17.44,
-      "changesPercentage": 4.22726,
+      "price": 428.42999,
+      "change": -1.57001,
+      "changesPercentage": -0.36511798,
       "weight": 3.11,
-      "contribution": 0.13
+      "contribution": -0.01
     },
     {
       "symbol": "NFLX",
       "name": "Netflix, Inc.",
-      "price": 87.49,
-      "change": -0.76000214,
-      "changesPercentage": -0.86119222,
+      "price": 85.45,
+      "change": -2.040001,
+      "changesPercentage": -2.3317,
       "weight": 2.51,
-      "contribution": -0.02
+      "contribution": -0.06
     },
     {
       "symbol": "GOOG",
       "name": "Alphabet Inc.",
-      "price": 397.049988,
-      "change": 1.75,
-      "changesPercentage": 0.44270176,
+      "price": 386.76999,
+      "change": -10.28,
+      "changesPercentage": -2.58909,
       "weight": 3.45,
-      "contribution": 0.02
+      "contribution": -0.09
     },
     {
       "symbol": "COST",
       "name": "Costco Wholesale Corporation",
-      "price": 1008.78998,
-      "change": -3.27002,
-      "changesPercentage": -0.3231053,
+      "price": 999.46997,
+      "change": -9.32001,
+      "changesPercentage": -0.92387985,
       "weight": 2.88,
-      "contribution": -0.01
+      "contribution": -0.03
     },
     {
       "symbol": "TSLA",
       "name": "Tesla, Inc.",
-      "price": 428.35001,
-      "change": 16.56,
-      "changesPercentage": 4.021467,
+      "price": 445,
+      "change": 16.64999,
+      "changesPercentage": 3.88701,
       "weight": 2.63,
-      "contribution": 0.11
+      "contribution": 0.1
     },
     {
       "symbol": "AMD",
       "name": "Advanced Micro Devices, Inc.",
-      "price": 455.19,
-      "change": 46.73001,
-      "changesPercentage": 11.44054,
+      "price": 458.79001,
+      "change": 3.60001,
+      "changesPercentage": 0.79087987,
       "weight": 1.94,
-      "contribution": 0.22
+      "contribution": 0.02
     },
     {
       "symbol": "ADBE",
       "name": "Adobe Inc.",
-      "price": 253.039993,
-      "change": -3.47002,
-      "changesPercentage": -1.35278,
+      "price": 246.14999,
+      "change": -6.89,
+      "changesPercentage": -2.72289,
       "weight": 1.72,
-      "contribution": -0.02
+      "contribution": -0.05
     },
     {
       "symbol": "CSCO",
       "name": "Cisco Systems, Inc.",
-      "price": 96.57,
-      "change": 4.41,
-      "changesPercentage": 4.78515,
+      "price": 98.72,
+      "change": 2.15,
+      "changesPercentage": 2.22637,
       "weight": 1.44,
-      "contribution": 0.07
+      "contribution": 0.03
     },
     {
       "symbol": "PEP",
       "name": "PepsiCo, Inc.",
-      "price": 154.62,
-      "change": -1.67,
-      "changesPercentage": -1.068525,
+      "price": 149.41,
+      "change": -5.20999,
+      "changesPercentage": -3.36955,
       "weight": 1.58,
-      "contribution": -0.02
+      "contribution": -0.05
     }
   ]
 }
