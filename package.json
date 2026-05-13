@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "update:market": "node scripts/update-market.mjs",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint"
   },

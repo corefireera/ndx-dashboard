@@ -2,6 +2,15 @@
 
 import Link from "next/link";
 import { BarChart3 } from "lucide-react";
+import {
+  macroIndicators,
+  updateNotes,
+  valuationSnapshot,
+} from "@/data/home-observation";
+import {
+  buildMarketConclusion,
+  getIndexCardTitle,
+} from "@/lib/home-observation";
 
 type StockItem = {
   symbol: string;
@@ -15,6 +24,7 @@ type StockItem = {
 
 type MarketData = {
   updatedAt: string;
+  beijingUpdatedAt?: string;
   index: {
     symbol: string;
     name: string;
@@ -27,18 +37,36 @@ type MarketData = {
 
 export default function HomeClient({ marketData }: { marketData: MarketData }) {
   const index = marketData.index;
-  const topDrivers = (marketData.stocks || []).slice(0, 10);
-
-  const conclusion = {
-    status: "适合观察",
-    desc: "估值处于中位区间，利率仍有压力，当前更适合等待更好的风险收益比。",
-  };
+  const stocks = marketData.stocks || [];
+  const topDrivers = [...stocks]
+    .sort((a, b) => Math.abs(b.contribution ?? 0) - Math.abs(a.contribution ?? 0))
+    .slice(0, 10);
+  const risingCount = stocks.filter((stock) => stock.changesPercentage > 0).length;
+  const risingTotal = stocks.length;
+  const risingLabel = risingTotal >= 100 ? "上涨家数" : "核心样本上涨";
+  const indexTitle = getIndexCardTitle(index);
+  const conclusion = buildMarketConclusion({
+    index,
+    macroIndicators,
+    valuation: valuationSnapshot,
+  });
 
   const formatSigned = (num: number, digits = 2) =>
     `${num >= 0 ? "+" : ""}${num.toFixed(digits)}%`;
+  const formatPrice = (num: number) =>
+    num.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
 
   const getColor = (num: number) =>
     num >= 0 ? "text-emerald-600" : "text-rose-600";
+
+  const getStateColor = (tone: "neutral" | "warning" | "risk") => {
+    if (tone === "risk") return "text-rose-500";
+    if (tone === "warning") return "text-orange-400";
+    return "text-slate-400";
+  };
 
   return (
     <main className="min-h-screen bg-[#f5f5f7] text-slate-900">
@@ -59,7 +87,7 @@ export default function HomeClient({ marketData }: { marketData: MarketData }) {
 
             <div className="mt-5 flex flex-wrap items-center gap-2.5 text-sm text-slate-500">
               <div className="rounded-full border border-stone-200 bg-white px-3 py-1.5">
-                纽约收盘后
+                纽约 16:00 收盘
               </div>
               <div className="rounded-full border border-stone-200 bg-white px-3 py-1.5">
                 北京 06:30 更新
@@ -67,9 +95,12 @@ export default function HomeClient({ marketData }: { marketData: MarketData }) {
             </div>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <button className="rounded-full bg-stone-900 px-5 py-3 text-sm font-medium text-white transition hover:bg-stone-800">
-                开始观察 →
-              </button>
+              <Link
+                href="#daily-drivers"
+                className="rounded-full bg-stone-900 px-5 py-3 text-sm font-medium text-white transition hover:bg-stone-800"
+              >
+                查看今日观察 →
+              </Link>
               <Link
                 href="/constituents"
                 className="rounded-full border border-stone-200 bg-white px-5 py-3 text-center text-sm font-medium text-slate-700 transition hover:bg-stone-50"
@@ -83,9 +114,9 @@ export default function HomeClient({ marketData }: { marketData: MarketData }) {
             <div className="rounded-3xl border border-stone-200/80 bg-white p-6 shadow-[0_10px_30px_rgba(0,0,0,0.04)] sm:p-8">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <div className="text-sm text-slate-500">指数总览</div>
+                  <div className="text-sm text-slate-500">{indexTitle}</div>
                   <div className="mt-3 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
-                    {index ? index.price.toFixed(2) : "--"}
+                    {index ? formatPrice(index.price) : "--"}
                   </div>
                   <div className="mt-3 flex items-center gap-3 text-sm font-medium">
                     <span className={index && index.change >= 0 ? "text-emerald-700" : "text-rose-600"}>
@@ -108,15 +139,21 @@ export default function HomeClient({ marketData }: { marketData: MarketData }) {
                   <span className="text-slate-700">{topDrivers[0]?.name ?? "--"}</span>
                 </div>
                 <div className="flex justify-between py-1">
-                  <span>上涨家数</span>
+                  <span>{risingLabel}</span>
                   <span className="text-slate-700">
-                    <span className="text-emerald-700">64</span> / 100
+                    <span className="text-emerald-700">{risingCount}</span> / {risingTotal || "--"}
                   </span>
                 </div>
                 <div className="flex justify-between py-1">
                   <span>数据时间</span>
                   <span className="text-slate-700">{marketData.updatedAt}</span>
                 </div>
+                {marketData.beijingUpdatedAt ? (
+                  <div className="flex justify-between py-1">
+                    <span>本地时间</span>
+                    <span className="text-slate-700">{marketData.beijingUpdatedAt}</span>
+                  </div>
+                ) : null}
               </div>
             </div>
 
@@ -136,7 +173,7 @@ export default function HomeClient({ marketData }: { marketData: MarketData }) {
         </div>
       </section>
 
-      <section className="mx-auto mt-2 max-w-6xl px-4 sm:px-6">
+      <section id="daily-drivers" className="mx-auto mt-2 max-w-6xl scroll-mt-28 px-4 sm:px-6">
         <div className="mb-5">
           <div className="flex items-center gap-2">
             <BarChart3 size={17} strokeWidth={1.8} className="text-slate-500" />
@@ -145,7 +182,7 @@ export default function HomeClient({ marketData }: { marketData: MarketData }) {
             </h2>
           </div>
           <p className="mt-2 text-sm text-slate-500">
-            按对指数贡献排序，一眼看清纳指上涨的真正来源。
+            按权重 × 涨跌幅估算，对纳指100当日涨跌贡献较大的成分股。
           </p>
         </div>
 
@@ -192,35 +229,27 @@ export default function HomeClient({ marketData }: { marketData: MarketData }) {
 
       <section className="mx-auto mt-4 max-w-6xl px-4 sm:px-6">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          <div className="rounded-2xl border border-stone-200/80 bg-white px-5 py-4">
-            <div className="text-xs text-slate-400">恐慌指数</div>
-            <div className="mt-1 text-sm font-medium text-slate-700">VIX</div>
-            <div className="mt-4 text-2xl font-semibold tracking-tight text-slate-950 sm:text-3xl">
-              18.2
+          {macroIndicators.map((item) => (
+            <div
+              key={item.key}
+              className="rounded-2xl border border-stone-200/80 bg-white px-5 py-4"
+            >
+              <div className="text-xs text-slate-400">{item.label}</div>
+              <div className="mt-1 text-sm font-medium text-slate-700">{item.symbol}</div>
+              <div className="mt-4 text-2xl font-semibold tracking-tight text-slate-950 sm:text-3xl">
+                {item.value}
+              </div>
+              <div className={`mt-2 text-sm ${getColor(item.change)}`}>
+                {formatSigned(item.change)}
+              </div>
+              <div className={`mt-1 text-xs ${getStateColor(item.stateTone)}`}>
+                {item.state}
+              </div>
             </div>
-            <div className="mt-2 text-sm text-emerald-600">-3.1%</div>
-            <div className="mt-1 text-xs text-slate-400">中性</div>
-          </div>
-
-          <div className="rounded-2xl border border-stone-200/80 bg-white px-5 py-4">
-            <div className="text-xs text-slate-400">利率水平</div>
-            <div className="mt-1 text-sm font-medium text-slate-700">美债10Y</div>
-            <div className="mt-4 text-2xl font-semibold tracking-tight text-slate-950 sm:text-3xl">
-              4.21%
-            </div>
-            <div className="mt-2 text-sm text-rose-500">+0.05%</div>
-            <div className="mt-1 text-xs text-orange-400">偏压制</div>
-          </div>
-
-          <div className="rounded-2xl border border-stone-200/80 bg-white px-5 py-4">
-            <div className="text-xs text-slate-400">美元强弱</div>
-            <div className="mt-1 text-sm font-medium text-slate-700">美元指数</div>
-            <div className="mt-4 text-2xl font-semibold tracking-tight text-slate-950 sm:text-3xl">
-              104.3
-            </div>
-            <div className="mt-2 text-sm text-emerald-600">-0.2%</div>
-            <div className="mt-1 text-xs text-orange-400">偏压制</div>
-          </div>
+          ))}
+        </div>
+        <div className="mt-3 text-xs text-slate-400">
+          宏观数据：每日美股收盘后更新，仅用于市场环境观察。
         </div>
       </section>
 
@@ -236,44 +265,36 @@ export default function HomeClient({ marketData }: { marketData: MarketData }) {
           </div>
 
           <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
-            <div className="rounded-2xl bg-slate-50 px-4 py-3">
-              <div className="text-sm text-slate-400">当前 PE(TTM)</div>
-              <div className="mt-2 text-2xl font-semibold text-slate-950">28.4</div>
-            </div>
-
-            <div className="rounded-2xl bg-slate-50 px-4 py-3">
-              <div className="text-sm text-slate-400">近10年历史分位</div>
-              <div className="mt-2 text-2xl font-semibold text-slate-950">78%</div>
-            </div>
-
-            <div className="rounded-2xl bg-slate-50 px-4 py-3">
-              <div className="text-sm text-slate-400">当前区间</div>
-              <div className="mt-2 text-2xl font-semibold text-slate-950">中高位</div>
-            </div>
-
-            <div className="rounded-2xl bg-slate-50 px-4 py-3">
-              <div className="text-sm text-slate-400">近10年中位数</div>
-              <div className="mt-2 text-2xl font-semibold text-slate-950">22.5</div>
-            </div>
+            {valuationSnapshot.metrics.map((metric) => (
+              <div key={metric.label} className="rounded-2xl bg-slate-50 px-4 py-3">
+                <div className="text-sm text-slate-400">{metric.label}</div>
+                <div className="mt-2 text-2xl font-semibold text-slate-950">
+                  {metric.value}
+                </div>
+              </div>
+            ))}
           </div>
 
           <div className="mt-5 rounded-2xl bg-slate-50 px-4 py-4">
             <div className="text-sm text-slate-400">一句话判断</div>
             <div className="mt-2 text-sm leading-7 text-slate-700 sm:text-base">
-              当前估值处于中高位，更适合分批定投，不适合一次性重仓追高。
+              {valuationSnapshot.summary}
             </div>
+          </div>
+
+          <div className="mt-4 text-xs text-slate-400">
+            估值数据：每周更新，仅用于结构观察
           </div>
         </div>
       </section>
 
 
       <footer className="mt-10 border-t border-gray-200 py-6 px-6 text-center text-sm text-gray-500">
-        <div className="mb-2 text-xs text-gray-500">
-         结构观察：非实时数据
+        <div className="mx-auto max-w-4xl space-y-1 text-xs leading-relaxed text-gray-400">
+          {updateNotes.map((note) => (
+            <div key={note}>{note}</div>
+          ))}
         </div>
-       <div className="text-xs text-gray-400 leading-relaxed">
-         数据更新：美股收盘后自动更新（北京时间每日 06:30）
-      </div>
      </footer>
 
     </main>

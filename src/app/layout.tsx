@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SiteHeader from "@/components/site-header";
+import { getMarketData } from "@/lib/market";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,13 +17,34 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "NDX100观察",
   description: "面向中国投资者的纳指结构化观察工具",
+  icons: {
+    icon: [
+      { url: "/favicon.ico?v=n", sizes: "any" },
+      { url: "/icon.png?v=n", type: "image/png", sizes: "512x512" },
+    ],
+    shortcut: "/favicon.ico?v=n",
+  },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const marketData = await getMarketData();
+  const index = marketData.index;
+  const stripPrice = index
+    ? index.price.toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      })
+    : "--";
+  const stripChange = index
+    ? `${index.changesPercentage >= 0 ? "+" : ""}${index.changesPercentage.toFixed(2)}%`
+    : "--";
+  const stripChangeClass =
+    index && index.changesPercentage < 0 ? "text-rose-600" : "text-green-600";
+
   return (
     <html
       lang="en"
@@ -35,8 +57,8 @@ export default function RootLayout({
             
             <div className="flex items-center gap-3">
               <span>纳指</span>
-              <span className="font-medium text-slate-900">19,842</span>
-              <span className="text-green-600">+0.63%</span>
+              <span className="font-medium text-slate-900">{stripPrice}</span>
+              <span className={stripChangeClass}>{stripChange}</span>
             </div>
 
             <div>情绪：中性</div>

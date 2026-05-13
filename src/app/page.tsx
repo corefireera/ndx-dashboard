@@ -1,6 +1,8 @@
-import snapshot from "@/data/market-snapshot.json";
 import HomeClient from "./home-client";
+import { getMarketData } from "@/lib/market";
 
-export default function HomePage() {
-  return <HomeClient marketData={snapshot} />;
+export default async function HomePage() {
+  const marketData = await getMarketData();
+
+  return <HomeClient marketData={marketData} />;
 }

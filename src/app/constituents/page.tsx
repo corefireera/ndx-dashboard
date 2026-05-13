@@ -3,7 +3,6 @@
 import snapshot from "@/data/market-snapshot.json";
 import { Layers3 } from "lucide-react";
 import {
-  ResponsiveContainer,
   LineChart,
   Line,
   XAxis,
@@ -194,7 +193,7 @@ export default function ConstituentsPage() {
           </p>
 
           <div className="mt-3 text-sm text-slate-400">
-            更新于：{snapshot.updatedAt}
+            更新于：{snapshot.updatedAt} / {snapshot.beijingUpdatedAt}
           </div>
         </div>
 
@@ -258,8 +257,11 @@ export default function ConstituentsPage() {
           desc="用一条线看清纳指长期波动结构。"
         >
           <div className="relative h-[320px] w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={yearlyData}>
+            <LineChart
+              data={yearlyData}
+              responsive
+              style={{ width: "100%", height: "100%" }}
+            >
                 <CartesianGrid stroke="#e7e5e4" strokeDasharray="3 3" />
                 <ReferenceLine y={0} stroke="#e5e7eb" />
                 <XAxis
@@ -294,10 +296,10 @@ export default function ConstituentsPage() {
                   stroke="#334155"
                   strokeWidth={2}
                   dot={false}
+                  isAnimationActive={false}
                   activeDot={{ r: 4 }}
                 />
-              </LineChart>
-            </ResponsiveContainer>
+            </LineChart>
 
             <div className="absolute right-2 top-2 text-xs text-slate-400">
               单位：%
@@ -319,11 +321,12 @@ export default function ConstituentsPage() {
           </div>
 
           <div className="h-[320px] w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart
-                data={peHistoryData}
-                margin={{ top: 10, right: 12, left: -24, bottom: 6 }}
-              >
+            <LineChart
+              data={peHistoryData}
+              responsive
+              style={{ width: "100%", height: "100%" }}
+              margin={{ top: 10, right: 12, left: -24, bottom: 6 }}
+            >
                 <CartesianGrid stroke="#e7e5e4" strokeDasharray="3 3" />
                 <XAxis
                   dataKey="year"
@@ -364,10 +367,10 @@ export default function ConstituentsPage() {
                   stroke="#334155"
                   strokeWidth={2}
                   dot={{ r: 2.5 }}
+                  isAnimationActive={false}
                   activeDot={{ r: 4 }}
                 />
-              </LineChart>
-            </ResponsiveContainer>
+            </LineChart>
           </div>
 
           <div className="mt-5 rounded-2xl bg-slate-50 px-4 py-4">
@@ -503,11 +506,12 @@ export default function ConstituentsPage() {
           </div>
 
           <div className="h-[320px] w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart
-                data={indexCompareData}
-                margin={{ top: 10, right: 12, left: -12, bottom: 6 }}
-              >
+            <LineChart
+              data={indexCompareData}
+              responsive
+              style={{ width: "100%", height: "100%" }}
+              margin={{ top: 10, right: 12, left: -12, bottom: 6 }}
+            >
                 <CartesianGrid stroke="#e7e5e4" strokeDasharray="3 3" />
                 <XAxis
                   dataKey="year"
@@ -548,6 +552,7 @@ export default function ConstituentsPage() {
                   stroke="#0f172a"
                   strokeWidth={2.4}
                   dot={false}
+                  isAnimationActive={false}
                   activeDot={{ r: 4 }}
                 />
                 <Line
@@ -556,6 +561,7 @@ export default function ConstituentsPage() {
                   stroke="#64748b"
                   strokeWidth={2}
                   dot={false}
+                  isAnimationActive={false}
                   activeDot={{ r: 4 }}
                 />
                 <Line
@@ -564,10 +570,10 @@ export default function ConstituentsPage() {
                   stroke="#cbd5e1"
                   strokeWidth={2}
                   dot={false}
+                  isAnimationActive={false}
                   activeDot={{ r: 4 }}
                 />
-              </LineChart>
-            </ResponsiveContainer>
+            </LineChart>
           </div>
 
           <div className="mt-5 rounded-2xl bg-slate-50 px-4 py-4">
