@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import AskNdxAssistant from "@/components/ask-ndx-assistant";
 import SiteHeader from "@/components/site-header";
 import { getMarketData } from "@/lib/market";
 
@@ -68,6 +69,7 @@ export default async function RootLayout({
           </div>
         </div>
         {children}
+        <AskNdxAssistant />
       </body>
     </html>
   );
