@@ -50,7 +50,7 @@ export function buildMarketConclusion({
   }
 
   return {
-    status: "适合观察",
+    status: "适合长期定投",
     desc: `${messages.join("，")}。当前更适合等待更好的风险收益比，不适合一次性重仓追高。`,
   };
 }

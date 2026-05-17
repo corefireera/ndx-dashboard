@@ -1,16 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { BarChart3 } from "lucide-react";
 import {
   macroIndicators,
-  updateNotes,
   valuationSnapshot,
 } from "@/data/home-observation";
-import {
-  buildMarketConclusion,
-  getIndexCardTitle,
-} from "@/lib/home-observation";
+import { buildMarketConclusion } from "@/lib/home-observation";
 
 type StockItem = {
   symbol: string;
@@ -35,6 +30,21 @@ type MarketData = {
   stocks: StockItem[];
 };
 
+function formatMarketTime(value: string | undefined, label: string) {
+  if (!value) {
+    return `${label} --`;
+  }
+
+  const match = value.match(/(\d{4})[/-](\d{2})[/-](\d{2})\s+(\d{2}):(\d{2})/);
+
+  if (!match) {
+    return `${label} ${value}`;
+  }
+
+  const [, , month, day, hour, minute] = match;
+  return `${label} ${month}/${day} ${hour}:${minute}`;
+}
+
 export default function HomeClient({ marketData }: { marketData: MarketData }) {
   const index = marketData.index;
   const stocks = marketData.stocks || [];
@@ -44,7 +54,21 @@ export default function HomeClient({ marketData }: { marketData: MarketData }) {
   const risingCount = stocks.filter((stock) => stock.changesPercentage > 0).length;
   const risingTotal = stocks.length;
   const risingLabel = risingTotal >= 100 ? "上涨家数" : "核心样本上涨";
-  const indexTitle = getIndexCardTitle(index);
+  const marketMood = "中性";
+  const marketPhase = "震荡";
+  const statusLabel = index
+    ? index.changesPercentage > 0
+      ? "收涨"
+      : index.changesPercentage < 0
+        ? "收跌"
+        : "收平"
+    : "收盘";
+  const statusClass =
+    index && index.changesPercentage > 0
+      ? "bg-emerald-50 text-emerald-700 ring-emerald-100"
+      : index && index.changesPercentage < 0
+        ? "bg-rose-50 text-rose-600 ring-rose-100"
+        : "bg-slate-50 text-slate-600 ring-slate-100";
   const conclusion = buildMarketConclusion({
     index,
     macroIndicators,
@@ -70,104 +94,79 @@ export default function HomeClient({ marketData }: { marketData: MarketData }) {
 
   return (
     <main className="min-h-screen bg-[#f5f5f7] text-slate-900">
-      <section className="mx-auto max-w-6xl px-4 pt-6 pb-8 sm:px-6 sm:pt-8 sm:pb-8">
-        <div className="grid items-start gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:gap-10">
-          <div>
-            <div className="mb-3 text-[11px] tracking-[0.28em] text-slate-400 sm:text-xs">
-              NASDAQ 100 INDEX
+      <section className="mx-auto max-w-6xl px-4 pt-2 pb-4 sm:px-6 sm:pt-3 sm:pb-5">
+        <div className="overflow-hidden rounded-2xl border border-stone-200/80 bg-white shadow-[0_10px_30px_rgba(0,0,0,0.035)]">
+          <div className="grid lg:grid-cols-[1fr_1fr]">
+            <div className="p-6 sm:p-7 lg:border-r lg:border-stone-100">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-[11px] tracking-[0.28em] text-slate-400 sm:text-xs">
+                  NASDAQ 100 INDEX
+                </span>
+                <span className={`rounded-full px-2.5 py-1 text-xs font-medium ring-1 ${statusClass}`}>
+                  {statusLabel}
+                </span>
+              </div>
+
+              <div className="mt-5 text-6xl font-semibold tracking-tight text-slate-950 sm:text-7xl">
+                {index ? formatPrice(index.price) : "--"}
+              </div>
+
+              <div className="mt-3 flex items-center gap-3 text-sm font-semibold">
+                <span className={index && index.change >= 0 ? "text-emerald-700" : "text-rose-600"}>
+                  {index ? `${index.change >= 0 ? "+" : ""}${index.change.toFixed(2)}` : "--"}
+                </span>
+                <span className={index && index.changesPercentage >= 0 ? "text-emerald-700" : "text-rose-600"}>
+                  {index ? `${index.changesPercentage >= 0 ? "+" : ""}${index.changesPercentage.toFixed(2)}%` : "--"}
+                </span>
+              </div>
+
+              <div className="mt-4 flex flex-wrap gap-x-8 gap-y-1 text-xs leading-5 text-slate-400 sm:text-[13px]">
+                <div>{formatMarketTime(marketData.updatedAt, "纽约时间")}</div>
+                <div>{formatMarketTime(marketData.beijingUpdatedAt, "北京时间")}</div>
+              </div>
             </div>
 
-            <h1 className="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
-              纳斯达克100
-            </h1>
+            <div className="border-t border-stone-200/80 p-6 sm:p-7 lg:border-t-0">
+              <div className="text-sm text-slate-400">市场状态</div>
 
-            <p className="mt-4 max-w-xl text-base leading-8 text-slate-500 sm:text-lg">
-              在噪音之外，看清指数结构。
-            </p>
+              <div className="mt-4 grid grid-cols-2 gap-x-8 gap-y-4 text-sm">
+                <div>
+                  <div className="text-slate-400">主要驱动</div>
+                  <div className="mt-1 text-base font-semibold leading-6 text-slate-950 sm:text-lg">
+                    {topDrivers[0]?.name ?? "--"}
+                  </div>
+                </div>
 
-            <div className="mt-5 flex flex-wrap items-center gap-2.5 text-sm text-slate-500">
-              <div className="rounded-full border border-stone-200 bg-white px-3 py-1.5">
-                纽约 16:00 收盘
+                <div>
+                  <div className="text-slate-400">{risingLabel}</div>
+                  <div className="mt-1 text-base font-semibold leading-6 text-slate-950 sm:text-lg">
+                    <span className="text-emerald-700">{risingCount}</span> / {risingTotal || "--"}
+                  </div>
+                </div>
               </div>
-              <div className="rounded-full border border-stone-200 bg-white px-3 py-1.5">
-                北京 06:30 更新
-              </div>
-            </div>
 
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <Link
-                href="#daily-drivers"
-                className="rounded-full bg-stone-900 px-5 py-3 text-sm font-medium text-white transition hover:bg-stone-800"
-              >
-                查看今日观察 →
-              </Link>
-              <Link
-                href="/constituents"
-                className="rounded-full border border-stone-200 bg-white px-5 py-3 text-center text-sm font-medium text-slate-700 transition hover:bg-stone-50"
-              >
-                查看成分股
-              </Link>
+              <div className="mt-5 border-t border-stone-100 pt-4">
+                <div className="text-sm text-slate-400">市场情绪</div>
+                <div className="mt-2.5 flex flex-wrap gap-4">
+                  <span className="rounded-full bg-stone-100 px-5 py-1.5 text-sm font-medium text-slate-700">
+                    情绪：{marketMood}
+                  </span>
+                  <span className="rounded-full bg-amber-50 px-5 py-1.5 text-sm font-medium text-amber-700">
+                    阶段：{marketPhase}
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="flex flex-col gap-6">
-            <div className="rounded-3xl border border-stone-200/80 bg-white p-6 shadow-[0_10px_30px_rgba(0,0,0,0.04)] sm:p-8">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <div className="text-sm text-slate-500">{indexTitle}</div>
-                  <div className="mt-3 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
-                    {index ? formatPrice(index.price) : "--"}
-                  </div>
-                  <div className="mt-3 flex items-center gap-3 text-sm font-medium">
-                    <span className={index && index.change >= 0 ? "text-emerald-700" : "text-rose-600"}>
-                      {index ? `${index.change >= 0 ? "+" : ""}${index.change.toFixed(2)}` : "--"}
-                    </span>
-                    <span className={index && index.changesPercentage >= 0 ? "text-emerald-700" : "text-rose-600"}>
-                      {index ? `${index.changesPercentage >= 0 ? "+" : ""}${index.changesPercentage.toFixed(2)}%` : "--"}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700 ring-1 ring-emerald-100">
-                  收盘
-                </div>
-              </div>
-
-              <div className="mt-6 border-t border-stone-200 pt-5 text-sm text-slate-500">
-                <div className="flex justify-between py-1">
-                  <span>主要驱动</span>
-                  <span className="text-slate-700">{topDrivers[0]?.name ?? "--"}</span>
-                </div>
-                <div className="flex justify-between py-1">
-                  <span>{risingLabel}</span>
-                  <span className="text-slate-700">
-                    <span className="text-emerald-700">{risingCount}</span> / {risingTotal || "--"}
-                  </span>
-                </div>
-                <div className="flex justify-between py-1">
-                  <span>数据时间</span>
-                  <span className="text-slate-700">{marketData.updatedAt}</span>
-                </div>
-                {marketData.beijingUpdatedAt ? (
-                  <div className="flex justify-between py-1">
-                    <span>本地时间</span>
-                    <span className="text-slate-700">{marketData.beijingUpdatedAt}</span>
-                  </div>
-                ) : null}
-              </div>
+          <div className="border-t border-stone-200/80 bg-amber-50/30 px-5 py-3 sm:flex sm:items-start sm:gap-5 sm:px-7">
+            <div className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-3 py-1 text-sm font-medium text-amber-700 ring-1 ring-amber-200">
+              <span className="h-2 w-2 rounded-full bg-amber-500"></span>
+              当前策略：{conclusion.status}
             </div>
 
-            <div className="rounded-3xl border border-amber-200/60 bg-amber-50/40 px-5 py-5 shadow-[0_10px_30px_rgba(0,0,0,0.03)] sm:px-6">
-              <div className="text-xs tracking-wide text-slate-400">当前结论</div>
-
-              <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-sm font-medium text-amber-700 ring-1 ring-amber-200">
-                <span className="h-2 w-2 rounded-full bg-amber-500"></span>
-                当前策略：{conclusion.status}
-              </div>
-
-              <div className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
-                {conclusion.desc}
-              </div>
+            <div className="mt-2.5 text-sm leading-6 text-slate-600 sm:mt-0">
+              {conclusion.desc}
             </div>
           </div>
         </div>
@@ -253,7 +252,7 @@ export default function HomeClient({ marketData }: { marketData: MarketData }) {
         </div>
       </section>
 
-      <section className="mx-auto mt-8 max-w-6xl px-4 pb-8 sm:mt-12 sm:px-6 sm:pb-8">
+      <section className="mx-auto mt-8 max-w-6xl px-4 pb-3 sm:mt-12 sm:px-6 sm:pb-4">
         <div className="rounded-3xl border border-stone-200/80 bg-white p-5 sm:p-8">
           <div className="mb-6">
             <h2 className="text-xl font-semibold text-slate-900 sm:text-2xl">
@@ -289,13 +288,9 @@ export default function HomeClient({ marketData }: { marketData: MarketData }) {
       </section>
 
 
-      <footer className="mt-10 border-t border-gray-200 py-6 px-6 text-center text-sm text-gray-500">
-        <div className="mx-auto max-w-4xl space-y-1 text-xs leading-relaxed text-gray-400">
-          {updateNotes.map((note) => (
-            <div key={note}>{note}</div>
-          ))}
-        </div>
-     </footer>
+      <footer className="mt-1 px-4 py-2 text-center text-xs text-slate-400">
+        本页面仅用于市场结构观察，不构成投资建议。
+      </footer>
 
     </main>
   );

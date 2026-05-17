@@ -1,68 +1,32 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import {
-  BarChart3,
-  Info,
   Compass,
   Layers3,
   ShieldAlert,
 } from "lucide-react";
 
-function AboutCard({
-  icon,
-  title,
-  desc,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  desc: string;
-}) {
-  return (
-    <div className="rounded-3xl border border-stone-200/80 bg-white p-6 sm:p-7">
-      <div className="mb-4 flex items-center gap-2">
-        <div className="text-slate-500">{icon}</div>
-        <h2 className="text-lg font-semibold text-slate-900 sm:text-xl">
-          {title}
-        </h2>
-      </div>
-      <p className="text-sm leading-8 text-slate-600 sm:text-base">{desc}</p>
-    </div>
-  );
-}
-
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-[#f5f5f7] text-slate-900">
+      <section className="mx-auto max-w-6xl px-4 pt-8 sm:px-6">
+        <div className="rounded-3xl border border-stone-200/80 bg-white p-6 sm:p-8">
+          <div className="mb-4 flex items-center gap-2">
+            <Compass size={18} strokeWidth={1.8} className="text-slate-500" />
+            <h1 className="text-lg font-semibold text-slate-900 sm:text-xl">
+              为什么做NDX100
+            </h1>
+          </div>
 
-      <section className="mx-auto max-w-6xl px-4 pt-8 pb-10 sm:px-6 sm:pt-10 sm:pb-14">
-        <div className="mb-3 text-[11px] tracking-[0.28em] text-slate-400 sm:text-xs">
-          ABOUT THIS PROJECT
-        </div>
-
-        <h1 className="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
-          关于这个网站
-        </h1>
-
-        <p className="mt-4 max-w-3xl text-base leading-8 text-slate-500 sm:text-lg">
-          这是一个面向中国纳指投资者的结构化观察工具。这个网站不做任何理财投资推荐，只是帮你看清结构，让决策变得更简单。
-        </p>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-          <AboutCard
-            icon={<Info size={18} strokeWidth={1.8} />}
-            title="这是什么"
-            desc="这不是一个荐股网站，也不是一个追逐热点的财经门户。它更像一个安静的观察面板：帮助用户看清纳指100的结构、估值、参与成本，以及真正重要的宏观与财报信息。"
-          />
-
-          <AboutCard
-            icon={<Compass size={18} strokeWidth={1.8} />}
-            title="为什么做它"
-            desc="平时查阅纳指相关信息，经常会遇到两个问题：一是信息分散，要在很多网站之间来回切换；二是大多数页面大而全，却不够克制，很难快速抓住真正重要的结构。所以我想做一个更小、更清晰、更适合长期投资者使用的版本。"
-          />
+          <div className="space-y-3 text-sm leading-8 text-slate-600 sm:text-base">
+            <p>
+              NDX100不是一个荐股网站，也不是追逐热点的财经门户。它更像一个安静的观察面板，帮助用户看清纳指100的结构、估值、参与成本，以及真正重要的宏观与财报信息。
+            </p>
+            <p>
+              平时查阅纳指相关信息，经常会遇到信息分散、页面过于复杂的问题，很难快速抓住真正重要的结构。所以这个网站希望把核心信息收敛到更小、更清晰、更适合长期观察的版本。
+            </p>
+          </div>
         </div>
       </section>
 

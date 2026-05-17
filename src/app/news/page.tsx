@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { BarChart3, CalendarDays, FileText, Sparkles } from "lucide-react";
+import { CalendarDays, FileText, Sparkles } from "lucide-react";
 
 type EventItem = {
   date: string;
@@ -162,24 +161,7 @@ export default function NewsPage() {
 
   return (
     <main className="min-h-screen bg-[#f5f5f7] text-slate-900">
-
-      <section className="px-4 pt-8 pb-10 sm:px-6 sm:pt-10 sm:pb-14">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="mb-3 text-[11px] tracking-[0.28em] text-slate-400 sm:text-xs">
-            EVENTS & INTERPRETATION
-          </div>
-
-          <h1 className="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
-            事件与解读
-          </h1>
-
-          <p className="mt-4 max-w-3xl text-base leading-8 text-slate-500 sm:text-lg">
-            不追逐噪音，只关注真正影响纳指估值、利率预期和风险偏好的关键事件。
-          </p>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-4 sm:px-6">
+      <section className="mx-auto max-w-6xl px-4 pt-8 sm:px-6">
         <div className="mb-5 flex items-center gap-2">
           <CalendarDays size={17} strokeWidth={1.8} className="text-slate-500" />
           <h2 className="text-xl font-semibold text-slate-900 sm:text-2xl">

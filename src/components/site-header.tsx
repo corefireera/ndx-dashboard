@@ -9,23 +9,29 @@ export default function SiteHeader() {
   const pathname = usePathname();
 
   const linkClass = (href: string) =>
-  `px-3 py-1.5 rounded-full text-sm font-medium transition
+  `px-3 py-1.5 text-sm font-medium transition
    ${
      pathname === href
-       ? "bg-black text-white"
-       : "text-slate-600 hover:bg-slate-100 hover:text-black"
+       ? "text-slate-950"
+       : "text-slate-600 hover:text-slate-900"
    }`;
 
   const mobileLinkClass = (href: string) =>
   pathname === href
-    ? "rounded-xl bg-slate-100 px-3 py-2 font-medium text-slate-900"
-    : "rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50";
+    ? "px-3 py-2 font-medium text-slate-950"
+    : "px-3 py-2 font-medium text-slate-600 hover:text-slate-900";
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur">
-      <div className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between px-4">
-        <Link href="/" className="text-lg font-semibold tracking-tight text-slate-900">
-          纳指100观察
+    <header className="fixed top-0 left-0 right-0 z-50 w-full bg-[#f5f5f7]">
+      <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-1.5 text-sm font-medium tracking-tight text-slate-900"
+        >
+          <span className="inline-flex h-4 w-4 shrink-0 items-center justify-center rounded bg-slate-950 text-[9px] font-semibold leading-none text-white">
+            N
+          </span>
+          <span>NDX100.COM</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-2">

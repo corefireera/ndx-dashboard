@@ -178,24 +178,7 @@ export default function ConstituentsPage() {
 
   return (
     <main className="min-h-screen bg-[#f5f5f7] text-slate-900">
-      <section className="mx-auto max-w-6xl px-4 pt-10 pb-4 sm:px-6">
-        <div className="mb-8">
-          <div className="text-[11px] tracking-[0.28em] text-slate-400 sm:text-xs">
-            CONSTITUENTS & STRUCTURE
-          </div>
-
-          <h1 className="mt-3 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
-            成分股结构
-          </h1>
-
-          <p className="mt-4 max-w-3xl text-base leading-8 text-slate-500 sm:text-lg">
-            看清谁在真正驱动指数
-          </p>
-
-          <div className="mt-3 text-sm text-slate-400">
-            更新于：{snapshot.updatedAt} / {snapshot.beijingUpdatedAt}
-          </div>
-        </div>
+      <section className="mx-auto max-w-6xl px-4 pt-8 pb-4 sm:px-6">
 
         <div className="mb-5 flex items-center gap-2">
           <Layers3 size={17} strokeWidth={1.8} className="text-slate-500" />

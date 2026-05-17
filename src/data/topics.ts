@@ -5,8 +5,8 @@ export type ResearchPrompt = {
 
 export const researchPrompts: ResearchPrompt[] = [
   {
-    id: "drivers",
-    question: "今天纳斯达克100主要受哪些公司驱动？",
+    id: "tpu-nvidia",
+    question: "Google TPU 会影响 NVIDIA 吗？",
   },
   {
     id: "ai-chain",
