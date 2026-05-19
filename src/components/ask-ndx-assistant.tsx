@@ -1,10 +1,11 @@
 "use client";
 
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { MessageCircle, Send, Sparkles, X } from "lucide-react";
 import { assistantDisclaimer, assistantIntro } from "@/data/disclaimers";
 import { assistantInsights, defaultInsight } from "@/data/insights";
-import { researchPrompts } from "@/data/topics";
+import { researchPrompts, type ResearchPrompt } from "@/data/topics";
 
 type ChatMessage = {
   id: number;
@@ -20,14 +21,24 @@ const initialMessages: ChatMessage[] = [
   },
 ];
 
-const coveredInsightIds = [
-  "google-tpu-nvidia-moat-2025-11",
-  "ai-chain",
-  "valuation",
-];
-
 function normalizeText(text: string) {
   return text.trim().toLowerCase();
+}
+
+function getPromptScope(pathname: string): ResearchPrompt["scope"] {
+  if (pathname.startsWith("/etf")) {
+    return "etf";
+  }
+
+  if (pathname.startsWith("/constituents")) {
+    return "constituents";
+  }
+
+  if (pathname.startsWith("/news")) {
+    return "news";
+  }
+
+  return "home";
 }
 
 function getLocalAnswer(question: string) {
@@ -52,6 +63,7 @@ function getLocalAnswer(question: string) {
 }
 
 export default function AskNdxAssistant() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>(initialMessages);
@@ -69,13 +81,10 @@ export default function AskNdxAssistant() {
     });
   }, [messages, isOpen]);
 
-  const recommendedQuestions = useMemo(
-    () =>
-      researchPrompts.filter((prompt) =>
-        coveredInsightIds.includes(prompt.id)
-      ),
-    []
-  );
+  const recommendedQuestions = useMemo(() => {
+    const scope = getPromptScope(pathname);
+    return researchPrompts.filter((prompt) => prompt.scope === scope).slice(0, 3);
+  }, [pathname]);
 
   const askQuestion = (question: string) => {
     const trimmed = question.trim();

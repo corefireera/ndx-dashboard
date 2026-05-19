@@ -1,31 +1,68 @@
 export type ResearchPrompt = {
   id: string;
   question: string;
+  scope: "home" | "constituents" | "etf" | "news";
 };
 
 export const researchPrompts: ResearchPrompt[] = [
   {
-    id: "tpu-nvidia",
-    question: "Google TPU 会影响 NVIDIA 吗？",
+    id: "market-status",
+    question: "今天纳指整体状态怎么样？",
+    scope: "home",
   },
   {
-    id: "ai-chain",
-    question: "纳指100里的 AI 主线应该怎么看？",
+    id: "home-valuation",
+    question: "当前估值适合加仓吗？",
+    scope: "home",
   },
   {
-    id: "rates",
-    question: "美债利率上行会怎样影响纳指100？",
+    id: "home-risks",
+    question: "现在主要风险在哪里？",
+    scope: "home",
   },
   {
-    id: "valuation",
-    question: "当前估值处在什么风险区间？",
+    id: "nvda-valuation",
+    question: "NVDA现在估值贵吗？",
+    scope: "constituents",
   },
   {
-    id: "mega-cap",
-    question: "七巨头对指数结构有什么影响？",
+    id: "meta-strength",
+    question: "META最近表现为什么强？",
+    scope: "constituents",
   },
   {
-    id: "risks",
-    question: "现在观察纳指100最该注意哪些风险？",
+    id: "constituents-ai-chain",
+    question: "AI主线下哪几只最值得关注？",
+    scope: "constituents",
+  },
+  {
+    id: "etf-513100-513300",
+    question: "513100和513300哪个更适合买？",
+    scope: "etf",
+  },
+  {
+    id: "etf-premium",
+    question: "现在溢价率高，还能买吗？",
+    scope: "etf",
+  },
+  {
+    id: "etf-limit",
+    question: "限购状态下怎么处理？",
+    scope: "etf",
+  },
+  {
+    id: "news-events",
+    question: "未来30天最重要的事件是什么？",
+    scope: "news",
+  },
+  {
+    id: "news-nvda-earnings",
+    question: "NVDA 财报重点看什么？",
+    scope: "news",
+  },
+  {
+    id: "news-cpi-fed",
+    question: "CPI 和美联储会怎样影响纳指？",
+    scope: "news",
   },
 ];

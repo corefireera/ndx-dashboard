@@ -17,15 +17,15 @@ const STOCKS = [
   { symbol: "AMZN", name: "Amazon.com Inc.", weight: 5.24 },
   { symbol: "META", name: "Meta Platforms Inc.", weight: 4.83 },
   { symbol: "GOOGL", name: "Alphabet Inc. Class A", weight: 3.92 },
-  { symbol: "GOOG", name: "Alphabet Inc. Class C", weight: 3.45 },
   { symbol: "AVGO", name: "Broadcom Inc.", weight: 3.11 },
+  { symbol: "AMD", name: "Advanced Micro Devices", weight: 1.94 },
+  { symbol: "QCOM", name: "Qualcomm Inc.", weight: 1.42 },
+  { symbol: "MU", name: "Micron Technology Inc.", weight: 1.18 },
+  { symbol: "MRVL", name: "Marvell Technology Inc.", weight: 0.86 },
+  { symbol: "ADBE", name: "Adobe Inc.", weight: 1.72 },
+  { symbol: "NFLX", name: "Netflix Inc.", weight: 2.51 },
   { symbol: "COST", name: "Costco Wholesale Corp.", weight: 2.88 },
   { symbol: "TSLA", name: "Tesla Inc.", weight: 2.63 },
-  { symbol: "NFLX", name: "Netflix Inc.", weight: 2.51 },
-  { symbol: "AMD", name: "Advanced Micro Devices", weight: 1.94 },
-  { symbol: "ADBE", name: "Adobe Inc.", weight: 1.72 },
-  { symbol: "PEP", name: "PepsiCo Inc.", weight: 1.58 },
-  { symbol: "CSCO", name: "Cisco Systems Inc.", weight: 1.44 },
 ];
 
 const INDEX_CANDIDATES = [

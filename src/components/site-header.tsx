@@ -23,7 +23,7 @@ export default function SiteHeader() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 w-full bg-[#f5f5f7]">
-      <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
+      <div className="mx-auto flex h-12 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link
           href="/"
           className="inline-flex items-center gap-1.5 text-sm font-medium tracking-tight text-slate-900"

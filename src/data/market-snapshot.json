@@ -64,15 +64,6 @@
       "contribution": 0
     },
     {
-      "symbol": "GOOG",
-      "name": "Alphabet Inc.",
-      "price": 393.1099853515625,
-      "change": -0.21002197265625,
-      "changesPercentage": -0.05339722585816139,
-      "weight": 3.45,
-      "contribution": 0
-    },
-    {
       "symbol": "AVGO",
       "name": "Broadcom Inc.",
       "price": 420.7099914550781,
@@ -80,6 +71,60 @@
       "changesPercentage": -1.0536491828604313,
       "weight": 3.11,
       "contribution": -0.03
+    },
+    {
+      "symbol": "AMD",
+      "name": "Advanced Micro Devices, Inc.",
+      "price": 420.989990234375,
+      "change": -3.110015869140625,
+      "changesPercentage": -0.7333213450559402,
+      "weight": 1.94,
+      "contribution": -0.01
+    },
+    {
+      "symbol": "QCOM",
+      "name": "QUALCOMM Incorporated",
+      "price": 203.63999938964844,
+      "change": 2.149993896484375,
+      "changesPercentage": 1.0670474156879795,
+      "weight": 1.42,
+      "contribution": 0.02
+    },
+    {
+      "symbol": "MU",
+      "name": "Micron Technology, Inc.",
+      "price": 681.5399780273438,
+      "change": -43.1199951171875,
+      "changesPercentage": -5.950376275106801,
+      "weight": 1.18,
+      "contribution": -0.07
+    },
+    {
+      "symbol": "MRVL",
+      "name": "Marvell Technology, Inc.",
+      "price": 168.92999267578125,
+      "change": -7.9600067138671875,
+      "changesPercentage": -4.499975544876962,
+      "weight": 0.86,
+      "contribution": -0.04
+    },
+    {
+      "symbol": "ADBE",
+      "name": "Adobe Inc.",
+      "price": 255.63999938964844,
+      "change": 8.039993286132812,
+      "changesPercentage": 3.2471700678276574,
+      "weight": 1.72,
+      "contribution": 0.06
+    },
+    {
+      "symbol": "NFLX",
+      "name": "Netflix, Inc.",
+      "price": 89.6500015258789,
+      "change": 2.6300048828125,
+      "changesPercentage": 3.0222994533085332,
+      "weight": 2.51,
+      "contribution": 0.08
     },
     {
       "symbol": "COST",
@@ -98,51 +143,6 @@
       "changesPercentage": -2.901193701051463,
       "weight": 2.63,
       "contribution": -0.08
-    },
-    {
-      "symbol": "NFLX",
-      "name": "Netflix, Inc.",
-      "price": 89.6500015258789,
-      "change": 2.6300048828125,
-      "changesPercentage": 3.0222994533085332,
-      "weight": 2.51,
-      "contribution": 0.08
-    },
-    {
-      "symbol": "AMD",
-      "name": "Advanced Micro Devices, Inc.",
-      "price": 420.989990234375,
-      "change": -3.110015869140625,
-      "changesPercentage": -0.7333213450559402,
-      "weight": 1.94,
-      "contribution": -0.01
-    },
-    {
-      "symbol": "ADBE",
-      "name": "Adobe Inc.",
-      "price": 255.63999938964844,
-      "change": 8.039993286132812,
-      "changesPercentage": 3.2471700678276574,
-      "weight": 1.72,
-      "contribution": 0.06
-    },
-    {
-      "symbol": "PEP",
-      "name": "PepsiCo, Inc.",
-      "price": 149.05999755859375,
-      "change": -0.05999755859375,
-      "changesPercentage": -0.04023441561046209,
-      "weight": 1.58,
-      "contribution": 0
-    },
-    {
-      "symbol": "CSCO",
-      "name": "Cisco Systems, Inc.",
-      "price": 118.87999725341797,
-      "change": 0.6699981689453125,
-      "changesPercentage": 0.5667863752088628,
-      "weight": 1.44,
-      "contribution": 0.01
     }
   ]
 }

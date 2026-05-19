@@ -45,7 +45,28 @@ function SectionCard({
 export default function ConstituentsPage() {
   const stocks: StockItem[] = (snapshot.stocks || []).slice(0, 15);
 
-  const top15 = [...stocks].sort((a, b) => (b.weight ?? 0) - (a.weight ?? 0));
+  const top15 = stocks;
+
+  const relatedStocks = [
+    {
+      symbol: "TSM",
+      name: "台积电",
+      desc: "纳指芯片链的重要代工厂，非纳指100成分股，但与 NVDA、AMD、AAPL 等核心公司高度相关。",
+      tags: ["芯片代工", "先进制程", "AI资本开支"],
+    },
+    {
+      symbol: "PANW",
+      name: "Palo Alto Networks",
+      desc: "网络安全平台化代表，适合观察企业安全预算、云安全和 AI 安全需求。",
+      tags: ["网络安全", "平台化", "企业软件"],
+    },
+    {
+      symbol: "CRWD",
+      name: "CrowdStrike",
+      desc: "终端安全与云原生安全代表，常用于观察安全软件景气度和企业 IT 支出韧性。",
+      tags: ["终端安全", "云安全", "订阅软件"],
+    },
+  ];
 
   const yearlyData = [
     { year: "1985", value: 0 },
@@ -188,7 +209,7 @@ export default function ConstituentsPage() {
         </div>
 
         <p className="mb-6 text-sm text-slate-500">
-          按对指数贡献排序，快速看清当前最核心的权重驱动结构。
+          固定观察池，兼顾权重、AI链、软件消费和用户辨识度。
         </p>
 
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-5">
@@ -229,8 +250,48 @@ export default function ConstituentsPage() {
           ))}
         </div>
 
-        <div className="mt-4 mb-2 text-sm text-slate-400">
-          剩余成分股对指数影响更分散，这里只保留最关键的核心驱动层。
+        <div className="mt-6 rounded-3xl border border-stone-200/80 bg-white p-5 sm:p-6">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h3 className="text-base font-semibold text-slate-900">
+                关联重要标的
+              </h3>
+              <p className="mt-1 text-sm text-slate-500">
+                不放入核心15，用来辅助观察芯片链和网络安全主线。
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-3">
+            {relatedStocks.map((stock) => (
+              <div
+                key={stock.symbol}
+                className="rounded-2xl border border-stone-200/70 bg-slate-50/70 px-4 py-4"
+              >
+                <div className="flex items-baseline gap-2">
+                  <div className="text-xl font-semibold tracking-tight text-slate-950">
+                    {stock.symbol}
+                  </div>
+                  <div className="text-sm text-slate-500">{stock.name}</div>
+                </div>
+
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  {stock.desc}
+                </p>
+
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {stock.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full bg-white px-2.5 py-1 text-xs text-slate-500 ring-1 ring-stone-200"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

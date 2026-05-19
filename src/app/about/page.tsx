@@ -3,6 +3,7 @@
 import Image from "next/image";
 import {
   Compass,
+  Info,
   Layers3,
   ShieldAlert,
 } from "lucide-react";
@@ -66,6 +67,32 @@ export default function AboutPage() {
               <div className="mt-2 text-sm leading-7 text-slate-600">
                 看真正影响纳指的关键事件，不只是知道发生了什么，更重要的是理解这意味着什么。
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto mt-8 max-w-6xl px-4 sm:px-6">
+        <div className="rounded-3xl border border-stone-200/80 bg-white p-6 sm:p-8">
+          <div className="mb-5 flex items-center gap-2">
+            <Info size={18} strokeWidth={1.8} className="text-slate-500" />
+            <h2 className="text-lg font-semibold text-slate-900 sm:text-xl">
+              数据更新说明
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 gap-3 text-sm leading-7 text-slate-600 md:grid-cols-2">
+            <div className="rounded-2xl bg-slate-50 px-4 py-4">
+              行情与宏观数据：每日美股收盘后更新，主要用于市场状态观察。
+            </div>
+            <div className="rounded-2xl bg-slate-50 px-4 py-4">
+              估值数据：每周更新，仅用于结构位置观察。
+            </div>
+            <div className="rounded-2xl bg-slate-50 px-4 py-4">
+              成分股权重：定期更新，用于观察核心驱动结构。
+            </div>
+            <div className="rounded-2xl bg-slate-50 px-4 py-4">
+              国内ETF数据以手动维护为主，USD/CNY汇率为日更参考。
             </div>
           </div>
         </div>

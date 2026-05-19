@@ -50,7 +50,7 @@ export default function HomeClient({ marketData }: { marketData: MarketData }) {
   const stocks = marketData.stocks || [];
   const topDrivers = [...stocks]
     .sort((a, b) => Math.abs(b.contribution ?? 0) - Math.abs(a.contribution ?? 0))
-    .slice(0, 10);
+    .slice(0, 5);
   const risingCount = stocks.filter((stock) => stock.changesPercentage > 0).length;
   const risingTotal = stocks.length;
   const risingLabel = risingTotal >= 100 ? "上涨家数" : "核心样本上涨";
@@ -177,11 +177,11 @@ export default function HomeClient({ marketData }: { marketData: MarketData }) {
           <div className="flex items-center gap-2">
             <BarChart3 size={17} strokeWidth={1.8} className="text-slate-500" />
             <h2 className="text-xl font-semibold text-slate-900 sm:text-2xl">
-              今日驱动 TOP10
+              今日主要驱动 TOP5
             </h2>
           </div>
           <p className="mt-2 text-sm text-slate-500">
-            按权重 × 涨跌幅估算，对纳指100当日涨跌贡献较大的成分股。
+            按权重 × 涨跌幅估算，展示当日影响较大的核心成分股。
           </p>
         </div>
 
@@ -221,12 +221,50 @@ export default function HomeClient({ marketData }: { marketData: MarketData }) {
           ))}
         </div>
 
-        <div className="mt-6 mb-8 text-sm text-slate-400">
-          剩余成分股对指数影响更分散，完整结构可在「成分股」页面继续查看。
+      </section>
+
+      <section className="mx-auto mt-8 max-w-6xl px-4 sm:px-6">
+        <div className="mb-5">
+          <h2 className="text-xl font-semibold text-slate-900 sm:text-2xl">
+            纳指估值观察
+          </h2>
+          <p className="mt-2 text-sm text-slate-500">
+            当前位置更适合判断“贵不贵”，而不是只看涨跌。
+          </p>
+        </div>
+
+        <div className="rounded-3xl border border-stone-200/80 bg-white p-5 sm:p-8">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
+            {valuationSnapshot.metrics.map((metric) => (
+              <div key={metric.label} className="rounded-2xl bg-slate-50 px-4 py-3">
+                <div className="text-sm text-slate-400">{metric.label}</div>
+                <div className="mt-2 text-2xl font-semibold text-slate-950">
+                  {metric.value}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-5 rounded-2xl bg-slate-50 px-4 py-4">
+            <div className="text-sm text-slate-400">一句话判断</div>
+            <div className="mt-2 text-sm leading-7 text-slate-700 sm:text-base">
+              {valuationSnapshot.summary}
+            </div>
+          </div>
+
         </div>
       </section>
 
-      <section className="mx-auto mt-4 max-w-6xl px-4 sm:px-6">
+      <section className="mx-auto mt-8 max-w-6xl px-4 pb-3 sm:mt-10 sm:px-6 sm:pb-4">
+        <div className="mb-5">
+          <h2 className="text-xl font-semibold text-slate-900 sm:text-2xl">
+            宏观环境
+          </h2>
+          <p className="mt-2 text-sm text-slate-500">
+            观察波动、利率和美元强弱，作为纳指风险偏好的背景参考。
+          </p>
+        </div>
+
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {macroIndicators.map((item) => (
             <div
@@ -246,44 +284,6 @@ export default function HomeClient({ marketData }: { marketData: MarketData }) {
               </div>
             </div>
           ))}
-        </div>
-        <div className="mt-3 text-xs text-slate-400">
-          宏观数据：每日美股收盘后更新，仅用于市场环境观察。
-        </div>
-      </section>
-
-      <section className="mx-auto mt-8 max-w-6xl px-4 pb-3 sm:mt-12 sm:px-6 sm:pb-4">
-        <div className="rounded-3xl border border-stone-200/80 bg-white p-5 sm:p-8">
-          <div className="mb-6">
-            <h2 className="text-xl font-semibold text-slate-900 sm:text-2xl">
-              纳指估值观察
-            </h2>
-            <p className="mt-2 text-sm text-slate-500">
-              当前位置更适合判断“贵不贵”，而不是只看涨跌。
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
-            {valuationSnapshot.metrics.map((metric) => (
-              <div key={metric.label} className="rounded-2xl bg-slate-50 px-4 py-3">
-                <div className="text-sm text-slate-400">{metric.label}</div>
-                <div className="mt-2 text-2xl font-semibold text-slate-950">
-                  {metric.value}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-5 rounded-2xl bg-slate-50 px-4 py-4">
-            <div className="text-sm text-slate-400">一句话判断</div>
-            <div className="mt-2 text-sm leading-7 text-slate-700 sm:text-base">
-              {valuationSnapshot.summary}
-            </div>
-          </div>
-
-          <div className="mt-4 text-xs text-slate-400">
-            估值数据：每周更新，仅用于结构观察
-          </div>
         </div>
       </section>
 
