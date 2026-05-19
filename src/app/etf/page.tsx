@@ -19,8 +19,8 @@ export default async function EtfPage() {
       };
     }
     return {
-      text: "高风险",
-      className: "bg-rose-50 text-rose-700 ring-1 ring-rose-200",
+      text: "较高",
+      className: "bg-orange-50 text-orange-700 ring-1 ring-orange-200",
     };
   };
 
@@ -43,6 +43,10 @@ export default async function EtfPage() {
             国内ETF总览
           </h2>
         </div>
+
+        <p className="mb-5 text-sm leading-6 text-slate-500">
+          溢价率反映买入成本，受跨市场机制影响，国内纳指ETF长期存在溢价属正常现象。
+        </p>
 
         {/* 桌面端表格 */}
         <div className="hidden overflow-hidden rounded-3xl border border-stone-200/80 bg-white lg:block">
