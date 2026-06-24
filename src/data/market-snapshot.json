@@ -1,148 +1,148 @@
 {
-  "updatedAt": "纽约 2026/06/23 17:15:59",
-  "beijingUpdatedAt": "北京 2026/06/24 05:15:59",
+  "updatedAt": "纽约 2026/06/24 17:15:59",
+  "beijingUpdatedAt": "北京 2026/06/25 05:15:59",
   "index": {
     "symbol": "^NDX",
     "name": "Nasdaq 100 Index",
-    "price": 29347.2734375,
-    "change": -999.806640625,
-    "changesPercentage": -3.2945727827887064
+    "price": 29220.056640625,
+    "change": -127.212890625,
+    "changesPercentage": -0.4334743662933932
   },
   "stocks": [
     {
       "symbol": "AAPL",
       "name": "Apple Inc.",
-      "price": 294.29998779296875,
-      "change": -2.71002197265625,
-      "changesPercentage": -0.9124345589546858,
+      "price": 293.0799865722656,
+      "change": -1.220001220703125,
+      "changesPercentage": -0.41454341532673095,
       "weight": 8.72,
-      "contribution": -0.08
+      "contribution": -0.04
     },
     {
       "symbol": "MSFT",
       "name": "Microsoft Corporation",
-      "price": 373.94000244140625,
-      "change": 6.600006103515625,
-      "changesPercentage": 1.7967022838005193,
+      "price": 365.4599914550781,
+      "change": -8.480010986328125,
+      "changesPercentage": -2.267746411446548,
       "weight": 8.11,
-      "contribution": 0.15
+      "contribution": -0.18
     },
     {
       "symbol": "NVDA",
       "name": "NVIDIA Corporation",
-      "price": 200.0399932861328,
-      "change": -8.610000610351562,
-      "changesPercentage": -4.126528091164557,
+      "price": 199,
+      "change": -1.0399932861328125,
+      "changesPercentage": -0.5198926819824619,
       "weight": 7.95,
-      "contribution": -0.33
+      "contribution": -0.04
     },
     {
       "symbol": "AMZN",
       "name": "Amazon.com, Inc.",
-      "price": 234.11000061035156,
-      "change": 1.32000732421875,
-      "changesPercentage": 0.5670378290686527,
+      "price": 234.27000427246094,
+      "change": 0.160003662109375,
+      "changesPercentage": 0.06834550497297302,
       "weight": 5.24,
-      "contribution": 0.03
+      "contribution": 0
     },
     {
       "symbol": "META",
       "name": "Meta Platforms, Inc.",
-      "price": 562.2000122070312,
-      "change": -1.64996337890625,
-      "changesPercentage": -0.2926245367292342,
+      "price": 557.6699829101562,
+      "change": -4.530029296875,
+      "changesPercentage": -0.8057682672562461,
       "weight": 4.83,
-      "contribution": -0.01
+      "contribution": -0.04
     },
     {
       "symbol": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": 346.1300048828125,
-      "change": -3.54998779296875,
-      "changesPercentage": -1.0152104402096156,
+      "price": 345.2900085449219,
+      "change": -0.839996337890625,
+      "changesPercentage": -0.2426823234163182,
       "weight": 3.92,
-      "contribution": -0.04
+      "contribution": -0.01
     },
     {
       "symbol": "AVGO",
       "name": "Broadcom Inc.",
-      "price": 380.1499938964844,
-      "change": -11.980010986328125,
-      "changesPercentage": -3.055112038648594,
+      "price": 382.07000732421875,
+      "change": 1.920013427734375,
+      "changesPercentage": 0.5050673309381135,
       "weight": 3.11,
-      "contribution": -0.1
+      "contribution": 0.02
     },
     {
       "symbol": "AMD",
       "name": "Advanced Micro Devices, Inc.",
-      "price": 519.8499755859375,
-      "change": -31.780029296875,
-      "changesPercentage": -5.761113249020293,
+      "price": 519.739990234375,
+      "change": -0.1099853515625,
+      "changesPercentage": -0.021157133159145084,
       "weight": 1.94,
-      "contribution": -0.11
+      "contribution": 0
     },
     {
       "symbol": "QCOM",
       "name": "QUALCOMM Incorporated",
-      "price": 204.1300048828125,
-      "change": -17.769989013671875,
-      "changesPercentage": -8.008107031296953,
+      "price": 197.41000366210938,
+      "change": -6.720001220703125,
+      "changesPercentage": -3.292020310566769,
       "weight": 1.42,
-      "contribution": -0.11
+      "contribution": -0.05
     },
     {
       "symbol": "MU",
       "name": "Micron Technology, Inc.",
-      "price": 1051.77001953125,
-      "change": -159.6099853515625,
-      "changesPercentage": -13.175880789530037,
+      "price": 1048.510009765625,
+      "change": -3.260009765625,
+      "changesPercentage": -0.3099546198396026,
       "weight": 1.18,
-      "contribution": -0.16
+      "contribution": 0
     },
     {
       "symbol": "MRVL",
       "name": "Marvell Technology, Inc.",
-      "price": 279.0400085449219,
-      "change": -28.819976806640625,
-      "changesPercentage": -9.36139094976227,
+      "price": 276.70001220703125,
+      "change": -2.339996337890625,
+      "changesPercentage": -0.8385881114657132,
       "weight": 0.86,
-      "contribution": -0.08
+      "contribution": -0.01
     },
     {
       "symbol": "ADBE",
       "name": "Adobe Inc.",
-      "price": 197.42999267578125,
-      "change": 2.529998779296875,
-      "changesPercentage": 1.29810100488798,
+      "price": 196.57000732421875,
+      "change": -0.8599853515625,
+      "changesPercentage": -0.4355900235354638,
       "weight": 1.72,
-      "contribution": 0.02
+      "contribution": -0.01
     },
     {
       "symbol": "NFLX",
       "name": "Netflix, Inc.",
-      "price": 72.81999969482422,
-      "change": -0.05999755859375,
-      "changesPercentage": -0.08232376626624557,
+      "price": 71.83999633789062,
+      "change": -0.9800033569335938,
+      "changesPercentage": -1.3457887407863431,
       "weight": 2.51,
-      "contribution": 0
+      "contribution": -0.03
     },
     {
       "symbol": "COST",
       "name": "Costco Wholesale Corporation",
-      "price": 957.6799926757812,
-      "change": 6.33001708984375,
-      "changesPercentage": 0.6653720767633473,
+      "price": 961.0900268554688,
+      "change": 3.4100341796875,
+      "changesPercentage": 0.35607240474553314,
       "weight": 2.88,
-      "contribution": 0.02
+      "contribution": 0.01
     },
     {
       "symbol": "TSLA",
       "name": "Tesla, Inc.",
-      "price": 381.6099853515625,
-      "change": -23.44000244140625,
-      "changesPercentage": -5.786940661108482,
+      "price": 375.5299987792969,
+      "change": -6.079986572265625,
+      "changesPercentage": -1.5932461952389347,
       "weight": 2.63,
-      "contribution": -0.15
+      "contribution": -0.04
     }
   ]
 }
