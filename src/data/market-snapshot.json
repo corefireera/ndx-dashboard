@@ -4,9 +4,9 @@
   "index": {
     "symbol": "^NDX",
     "name": "Nasdaq 100 Index",
-    "price": 28592.658203125,
-    "change": -433.111328125,
-    "changesPercentage": -1.4921613969913858
+    "price": 28592.66015625,
+    "change": -433.109375,
+    "changesPercentage": -1.4921546680569542
   },
   "stocks": [
     {
@@ -66,9 +66,9 @@
     {
       "symbol": "AVGO",
       "name": "Broadcom Inc.",
-      "price": 370.82501220703125,
-      "change": -3.625,
-      "changesPercentage": -0.9680864953466093,
+      "price": 370.8299865722656,
+      "change": -3.620025634765625,
+      "changesPercentage": -0.9667580496069349,
       "weight": 3.11,
       "contribution": -0.03
     },
