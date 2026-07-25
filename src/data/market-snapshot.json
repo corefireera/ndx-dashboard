@@ -4,9 +4,9 @@
   "index": {
     "symbol": "^NDX",
     "name": "Nasdaq 100 Index",
-    "price": 28128.341796875,
-    "change": -326.46875,
-    "changesPercentage": -1.1473235763147749
+    "price": 28128.33984375,
+    "change": -326.470703125,
+    "changesPercentage": -1.1473304402683997
   },
   "stocks": [
     {
