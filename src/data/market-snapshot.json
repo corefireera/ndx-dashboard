@@ -1,12 +1,12 @@
 {
-  "updatedAt": "纽约 2026/10/01 17:15:59",
-  "beijingUpdatedAt": "北京 2026/10/02 05:15:59",
+  "updatedAt": "纽约 2026/10/02 17:15:59",
+  "beijingUpdatedAt": "北京 2026/10/03 05:15:59",
   "index": {
     "symbol": "^NDX",
     "name": "Nasdaq 100 Index",
-    "price": 30501.560546875,
-    "change": 93.060546875,
-    "changesPercentage": 0.30603465108440076
+    "price": 30807.931640625,
+    "change": 306.37109375,
+    "changesPercentage": 1.0044439964937757
   },
   "stocks": [
     {
