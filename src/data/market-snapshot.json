@@ -1,12 +1,12 @@
 {
-  "updatedAt": "纽约 2026/10/14 17:15:59",
-  "beijingUpdatedAt": "北京 2026/10/15 05:15:59",
+  "updatedAt": "纽约 2026/10/15 17:15:59",
+  "beijingUpdatedAt": "北京 2026/10/16 05:15:59",
   "index": {
     "symbol": "^NDX",
     "name": "Nasdaq 100 Index",
-    "price": 29950.81640625,
-    "change": -618.6640625,
-    "changesPercentage": -2.0237964565097415
+    "price": 29935.59375,
+    "change": -15.2265625,
+    "changesPercentage": -0.05083854913197546
   },
   "stocks": [
     {
@@ -48,11 +48,11 @@
     {
       "symbol": "META",
       "name": "Meta Platforms, Inc.",
-      "price": 762.5,
-      "change": 19.53997802734375,
-      "changesPercentage": 2.6300174234762386,
+      "price": 737.5399780273438,
+      "change": -24.96002197265625,
+      "changesPercentage": -3.273445504610656,
       "weight": 4.83,
-      "contribution": 0.13
+      "contribution": -0.16
     },
     {
       "symbol": "GOOGL",
