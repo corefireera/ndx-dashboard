@@ -4,9 +4,9 @@
   "index": {
     "symbol": "^NDX",
     "name": "Nasdaq 100 Index",
-    "price": 26989.9921875,
-    "change": 360.181640625,
-    "changesPercentage": 1.3525505184912674
+    "price": 26989.990234375,
+    "change": 360.1796875,
+    "changesPercentage": 1.3525431841356714
   },
   "stocks": [
     {
@@ -48,11 +48,11 @@
     {
       "symbol": "META",
       "name": "Meta Platforms, Inc.",
-      "price": 605.0800170898438,
-      "change": -24.91998291015625,
-      "changesPercentage": -3.9555528428819446,
+      "price": 610.1500244140625,
+      "change": 5.07000732421875,
+      "changesPercentage": 0.83790691826234,
       "weight": 4.83,
-      "contribution": -0.19
+      "contribution": 0.04
     },
     {
       "symbol": "GOOGL",
